@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Gateway - Ultimate Challenge</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #0a0a0a;
+            color: #ff5733;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 70%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #ff5733;
+        }
+        h1 {
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+        .challenge-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem 0;
+        }
+        .puzzle-container {
+            position: relative;
+            margin: 2rem 0;
+        }
+        .decoy-image {
+            filter: blur(3px);
+            transition: filter 0.3s ease;
+        }
+        .decoy-image:hover {
+            filter: blur(0);
+        }
+        .true-image {
+            display: none;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        .terminal-window {
+            background-color: #111;
+            border: 2px solid #ff5733;
+            padding: 1rem;
+            margin: 1rem 0;
+            position: relative;
+        }
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid orange;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: orange }
+        }
+        #answerCheck {
+            background: #222;
+            color: #ff5733;
+            border: 1px solid #ff5733;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Final Gateway</h1>
+            <p>Prove your worthiness</p>
+        </header>
+
+        <div class="challenge-area">
+            <div class="terminal-window">
+                <div class="typewriter">
+                    $ SYSTEM ALERT: Authentication required
+                </div>
+            </div>
+
+            <div class="puzzle-container">
+                <!-- Decoy image (blurred version) -->
+                <img src="image.jpg" alt="Decoy Image" class="decoy-image">
+                
+                <!-- True challenge image (hidden) -->
+                <img src="steg_image3.png" alt="True Challenge" class="true-image" id="trueImage">
+            </div>
+
+            <div class="terminal-window">
+                <p>Enter decryption key extracted from previous challenge:</p>
+                <input type="text" id="keyInput">
+                <button id="answerCheck" onclick="validateKey()">Authenticate</button>
+                <p id="resultMessage"></p>
+            </div>
+        </div>
+
+    <script>
+        function validateKey() {
+            const userInput = document.getElementById('keyInput').value;
+            const resultElement = document.getElementById('resultMessage');
+            
+            // Simple hash check for demonstration
+            const inputHash = hashCode(userInput.toUpperCase());
+            const validHash = -5617203266; // Hash of "FINAL_LEVEL_KEY"
+
+            if(inputHash === validHash) {
+                document.getElementById('trueImage').style.display = 'block';
+                resultElement.textContent = "Authentication successful!";
+                resultElement.style.color = "#33ff33";
+            } else {
+                resultElement.textContent = "Access denied! Invalid key";
+                resultElement.style.color = "#ff3333";
+            }
+        }
+
+        // Simple hash function for demonstration
+        function hashCode(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            return hash;
+        }
+    </script>
+</body>
+</html>
