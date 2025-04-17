@@ -47,6 +47,9 @@
             text-align: center;
             margin: 2rem 0;
         }
+        .hidden-data {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -62,7 +65,7 @@
             </div>
             
             <div class="image-container">
-                <img src={{ url_for('static', filename='images/steg_image2.png') }} alt="Next Clue" style="width: 300px;">
+                <img src="deeper_challenge.jpg" alt="Deeper Challenge Image" id="secondary-image">
             </div>
             
             <div class="message">
@@ -70,5 +73,20 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                document.cookie = "sessionID=" + Math.random().toString(36).substring(2) + "; path=/; Secure;";
+                document.cookie = "userToken=" + btoa(Math.random().toString(36)) + "; path=/; Secure;";
+                document.cookie = "authKey=xyz123abc; path=/; Secure;";
+                document.cookie = "trackingID=" + Math.floor(Math.random() * 1000000) + "; path=/; Secure;";
+                
+                document.cookie = "part1=#1 ctf{This_is; path=/; Secure; HttpOnly;";
+                document.cookie = "part2=#2 _NOT; path=/; Secure; HttpOnly;";
+                document.cookie = "part3=#3 _The Flag}; path=/; Secure; HttpOnly;";
+            }, 5000);
+        };
+    </script>
 </body>
 </html>
