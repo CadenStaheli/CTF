@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 2: The Deeper Layer</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #0a0a0a;
+            color: #33ff33;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #33ff33;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+        .challenge-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 2rem 0;
+        }
+        .image-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #33ff33;
+            box-shadow: 0 0 15px rgba(51, 255, 51, 0.5);
+        }
+        .message {
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .hidden-data {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>LEVEL 2: THE DEEPER LAYER</h1>
+            <p>You've found the hidden path. Now go deeper.</p>
+        </header>
+        
+        <div class="challenge-area">
+            <div class="message">
+                <p>Well done on discovering this hidden page. The journey continues...</p>
+            </div>
+            
+            <div class="image-container">
+                <img src="deeper_challenge.jpg" alt="Deeper Challenge Image" id="secondary-image">
+            </div>
+            
+            <div class="message">
+                <p>This image contains the next clue. What secrets does it hold?</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            setTimeout(function() {
+                document.cookie = "sessionID=" + Math.random().toString(36).substring(2) + "; path=/; Secure;";
+                document.cookie = "userToken=" + btoa(Math.random().toString(36)) + "; path=/; Secure;";
+                document.cookie = "authKey=xyz123abc; path=/; Secure;";
+                document.cookie = "trackingID=" + Math.floor(Math.random() * 1000000) + "; path=/; Secure;";
+                
+                document.cookie = "part1=#1 ctf{This_is; path=/; Secure; HttpOnly;";
+                document.cookie = "part2=#2 _NOT; path=/; Secure; HttpOnly;";
+                document.cookie = "part3=#3 _The Flag}; path=/; Secure; HttpOnly;";
+            }, 5000);
+        };
+    </script>
+</body>
+</html>
